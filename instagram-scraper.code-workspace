@@ -12,8 +12,8 @@
                 "port": 5432,
                 "driver": "PostgreSQL",
                 "name": "PostgreSQL",
-                "group": "Instagram Data Scrapper",
-                "database": "scrapper",
+                "group": "Instagram Scraper",
+                "database": "instagram_scraper",
                 "username": "admin",
                 "password": "admin"
             },
@@ -25,18 +25,18 @@
                 "server": "localhost",
                 "port": 3306,
                 "driver": "MySQL",
-                "group": "Instagram Data Scrapper",
+                "group": "Instagram Scraper",
                 "name": "MySQL",
-                "database": "scrapper",
+                "database": "instagram_scraper",
                 "username": "root",
                 "password": "admin"
             },
             {
                 "previewLimit": 50,
                 "driver": "SQLite",
-                "database": "${workspaceFolder:Instagram-Data-Scrapper}/data/database.sqlite3",
+                "database": "${workspaceFolder:instagram-scraper}/data/instagram_scraper.sqlite3",
                 "name": "SQLite",
-                "group": "Instagram Data Scrapper"
+                "group": "Instagram Scraper"
             }
         ],
         "sqltools.useNodeRuntime": true

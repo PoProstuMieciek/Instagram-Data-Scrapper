@@ -1,1 +1,1 @@
-# Instagram-Data-Scrapper
+# Instagram Scraper

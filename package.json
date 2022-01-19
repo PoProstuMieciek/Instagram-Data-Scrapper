@@ -1,5 +1,5 @@
 {
-    "name": "instagram-data-scrapper",
+    "name": "instagram-scraper",
     "version": "1.0.0",
     "description": "",
     "private": true,
@@ -34,7 +34,7 @@
     },
     "main": "build/index.js",
     "repository": {
-        "url": "git@github.com:PoProstuMieciek/Instagram-Data-Scrapper.git"
+        "url": "git@github.com:PoProstuMieciek/instagram-scraper.git"
     },
     "dependencies": {
         "mysql": "^2.18.1",

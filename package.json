@@ -3,11 +3,20 @@
     "version": "1.0.0",
     "description": "",
     "private": true,
-    "author": {
-        "name": "Maciej Opaliński",
-        "email": "poprostumieciek@gmail.com",
-        "url": "https://github.com/PoProstuMieciek"
-    },
+    "contributors": [
+        {
+            "name": "Maciej Opaliński",
+            "email": "poprostumieciek@gmail.com",
+            "url": "https://github.com/PoProstuMieciek"
+        },
+        {
+            "name": "Mikołaj Popik",
+            "url": "https://github.com/M1KUS3Q"
+        },
+        {
+            "name": "Wojciech Widomski"
+        }
+    ],
     "license": "GPL-3.0",
     "scripts": {
         "preinstall": "cp -n .env.example .env",

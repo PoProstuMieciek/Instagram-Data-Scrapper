@@ -30,7 +30,7 @@
         "test:watch": "jest --watch",
         "format": "prettier --write \"src/**/*\" \"**/*.json\" \".{prettier,eslint}rc\"",
         "lint": "eslint src/ --ext .ts",
-        "typeorm": "ts-node ./node_modules/typeorm/cli"
+        "typeorm": "ts-node --transpile-only ./node_modules/typeorm/cli"
     },
     "main": "build/index.js",
     "repository": {

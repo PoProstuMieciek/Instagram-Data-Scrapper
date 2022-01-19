@@ -39,7 +39,9 @@
                 "group": "Instagram Scraper"
             }
         ],
-        "sqltools.useNodeRuntime": true
+        "sqltools.useNodeRuntime": true,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "extensions": {
         "recommendations": [

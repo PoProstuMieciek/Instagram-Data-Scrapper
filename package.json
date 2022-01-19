@@ -1,0 +1,31 @@
+{
+    "name": "instagram-data-scrapper",
+    "version": "1.0.0",
+    "description": "",
+    "private": true,
+    "author": {
+        "name": "Maciej Opaliński",
+        "email": "poprostumieciek@gmail.com",
+        "url": "https://github.com/PoProstuMieciek"
+    },
+    "license": "GPL-3.0",
+    "scripts": {
+        "preinstall": "cp -n .env.example .env",
+        "postinstall": "husky install",
+        "prebuild": "rimraf build/",
+        "build": "tsc",
+        "build:watch": "tsc --watch",
+        "start": "node build/src/index.js",
+        "start:dev": "nodemon -e js --exec node --require dotenv/config --inspect=9229 build/src/index.js",
+        "format": "prettier --write \"src/**/*\" \"**/*.json\" \".{prettier,eslint}rc\"",
+        "lint": "eslint src/ --ext .ts"
+    },
+    "main": "src/index.ts",
+    "repository": {
+        "url": "git@github.com:PoProstuMieciek/Instagram-Data-Scrapper.git"
+    },
+    "engines": {
+        "npm": "please-use-yarn",
+        "yarn": ">= 1.19.1"
+    }
+}

@@ -18,14 +18,19 @@
         "start": "node build/src/index.js",
         "start:dev": "nodemon -e js --exec node --require dotenv/config --inspect=9229 build/src/index.js",
         "format": "prettier --write \"src/**/*\" \"**/*.json\" \".{prettier,eslint}rc\"",
-        "lint": "eslint src/ --ext .ts"
+        "lint": "eslint src/ --ext .ts",
+        "typeorm": "typeorm"
     },
     "main": "src/index.ts",
     "repository": {
         "url": "git@github.com:PoProstuMieciek/Instagram-Data-Scrapper.git"
     },
     "dependencies": {
-        "rimraf": "^3.0.2"
+        "mysql": "^2.18.1",
+        "pg": "^8.7.1",
+        "reflect-metadata": "^0.1.13",
+        "rimraf": "^3.0.2",
+        "typeorm": "^0.2.41"
     },
     "devDependencies": {
         "@types/node": "^17.0.10",

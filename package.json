@@ -25,7 +25,9 @@
         "url": "git@github.com:PoProstuMieciek/Instagram-Data-Scrapper.git"
     },
     "dependencies": {
-        "rimraf": "^3.0.2"
+        "reflect-metadata": "^0.1.13",
+        "rimraf": "^3.0.2",
+        "typeorm": "^0.2.41"
     },
     "devDependencies": {
         "@types/node": "^17.0.10",

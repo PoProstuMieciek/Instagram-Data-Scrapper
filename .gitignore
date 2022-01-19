@@ -6,5 +6,3 @@ build/
 *.sqlite3
 
 *.log
-
-*.code-workspace

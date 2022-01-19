@@ -1,0 +1,59 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "sqltools.connections": [
+            {
+                "previewLimit": 50,
+                "server": "localhost",
+                "port": 5432,
+                "driver": "PostgreSQL",
+                "name": "PostgreSQL",
+                "group": "Instagram Data Scrapper",
+                "database": "scrapper",
+                "username": "admin",
+                "password": "admin"
+            },
+            {
+                "mysqlOptions": {
+                    "authProtocol": "default"
+                },
+                "previewLimit": 50,
+                "server": "localhost",
+                "port": 3306,
+                "driver": "MySQL",
+                "group": "Instagram Data Scrapper",
+                "name": "MySQL",
+                "database": "scrapper",
+                "username": "root",
+                "password": "admin"
+            },
+            {
+                "previewLimit": 50,
+                "driver": "SQLite",
+                "database": "${workspaceFolder:Instagram-Data-Scrapper}/data/database.sqlite3",
+                "name": "SQLite",
+                "group": "Instagram Data Scrapper"
+            }
+        ],
+        "sqltools.useNodeRuntime": true
+    },
+    "extensions": {
+        "recommendations": [
+            "dbaeumer.vscode-eslint",
+            "esbenp.prettier-vscode",
+            "eamodio.gitlens",
+            "mhutchie.git-graph",
+            "ms-azuretools.vscode-docker",
+            "mtxr.sqltools",
+            "mtxr.sqltools-driver-pg",
+            "mtxr.sqltools-driver-mysql",
+            "mtxr.sqltools-driver-sqlite",
+            "aaron-bond.better-comments",
+            "ms-vsliveshare.vsliveshare"
+        ]
+    }
+}

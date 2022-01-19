@@ -6,13 +6,10 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
-        "prettier",
-        "import"
+        "prettier"
     ],
     "rules": {
         "comma-dangle": "off",
-        "import/prefer-default-export": "off",
-        "import/no-default-export": "error",
         "linebreak-style": ["error", "unix"]
     }
 }

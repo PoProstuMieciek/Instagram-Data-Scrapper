@@ -18,7 +18,8 @@
         "start": "node build/src/index.js",
         "start:dev": "nodemon -e js --exec node --require dotenv/config --inspect=9229 build/src/index.js",
         "format": "prettier --write \"src/**/*\" \"**/*.json\" \".{prettier,eslint}rc\"",
-        "lint": "eslint src/ --ext .ts"
+        "lint": "eslint src/ --ext .ts",
+        "typeorm": "typeorm"
     },
     "main": "src/index.ts",
     "repository": {

@@ -1,0 +1,46 @@
+{
+    "name": "instagram-data-scrapper",
+    "version": "1.0.0",
+    "description": "",
+    "private": true,
+    "author": {
+        "name": "Maciej Opaliński",
+        "email": "poprostumieciek@gmail.com",
+        "url": "https://github.com/PoProstuMieciek"
+    },
+    "license": "GPL-3.0",
+    "scripts": {
+        "preinstall": "cp -n .env.example .env",
+        "postinstall": "husky install",
+        "prebuild": "rimraf build/",
+        "build": "tsc",
+        "build:watch": "tsc --watch",
+        "start": "node build/src/index.js",
+        "start:dev": "nodemon -e js --exec node --require dotenv/config --inspect=9229 build/src/index.js",
+        "format": "prettier --write \"src/**/*\" \"**/*.json\" \".{prettier,eslint}rc\"",
+        "lint": "eslint src/ --ext .ts"
+    },
+    "main": "src/index.ts",
+    "repository": {
+        "url": "git@github.com:PoProstuMieciek/Instagram-Data-Scrapper.git"
+    },
+    "dependencies": {
+        "rimraf": "^3.0.2"
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.10",
+        "@typescript-eslint/eslint-plugin": "^5.10.0",
+        "@typescript-eslint/parser": "^5.10.0",
+        "eslint": "^8.7.0",
+        "eslint-config-prettier": "^8.3.0",
+        "husky": "^7.0.4",
+        "nodemon": "^2.0.15",
+        "prettier": "^2.5.1",
+        "ts-node": "^10.4.0",
+        "typescript": "^4.5.4"
+    },
+    "engines": {
+        "npm": "please-use-yarn",
+        "yarn": ">= 1.19.1"
+    }
+}

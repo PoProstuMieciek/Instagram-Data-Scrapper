@@ -2,7 +2,7 @@
 name: Bug
 about: Template for issue with bug report
 title: bug/{scope}-title
-labels: "scope: bug"
+labels: "type: bug"
 assignees: ""
 ---
 

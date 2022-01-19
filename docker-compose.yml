@@ -17,7 +17,7 @@ services:
         container_name: pgadmin
         image: dpage/pgadmin4
         ports:
-            - 8080:80
+            - 8081:80
         volumes:
             - pgadmin-data:/var/lib/pgadmin
         env_file:
@@ -27,12 +27,40 @@ services:
         links:
             - postgres:postgres
 
+    mariadb:
+        container_name: mariadb
+        image: mariadb:latest
+        ports:
+            - 3306:3306
+        volumes:
+            - mariadb-data:/var/lib/mysql
+        env_file:
+            - .env
+        networks:
+            - mariadb
+
+    phpmyadmin:
+        container_name: phpmyadmin
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - 8082:80
+        env_file:
+            - .env
+        networks:
+            - mariadb
+        links:
+            - mariadb:mariadb
+
 volumes:
     postgres-data:
         driver: local
     pgadmin-data:
         driver: local
+    mariadb-data:
+        driver: local
 
 networks:
     postgres:
+        driver: bridge
+    mariadb:
         driver: bridge

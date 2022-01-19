@@ -26,6 +26,8 @@
         "build:watch": "tsc --watch",
         "start": "node build/src/index.js",
         "start:dev": "nodemon -e js --exec node --require dotenv/config --inspect=9229 build/src/index.js",
+        "test": "jest",
+        "test:watch": "jest --watch",
         "format": "prettier --write \"src/**/*\" \"**/*.json\" \".{prettier,eslint}rc\"",
         "lint": "eslint src/ --ext .ts",
         "typeorm": "typeorm"

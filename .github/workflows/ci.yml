@@ -10,20 +10,22 @@ on:
 
 jobs:
     build:
-        name: 'Build'
         runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: 14.x
 
         steps:
             - uses: actions/checkout@v2
+            - name: Use Node.js ${{ matrix.node-version }}
 
-            - uses: borales/actions-yarn@v2.3.0
-              with:
-                  cmd: install
+            - uses: actions/setup-node@v1
+            - with:
+                  node-version: ${{ matrix.node-version }}
 
-            - uses: borales/actions-yarn@v2.3.0
-              with:
-                  cmd: build
+            - run: yarn install
 
-            - uses: borales/actions-yarn@v2.3.0
-              with:
-                  cmd: test
+            - run: yarn build
+
+            - run: yarn test

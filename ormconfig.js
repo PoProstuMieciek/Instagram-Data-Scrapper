@@ -1,13 +1,11 @@
-import { ConnectionOptions } from 'typeorm';
+const isDefault = (fallback) =>
+    process.env.TYPEORM_CONNECTION_NAME == fallback ? 'default' : fallback;
 
 const host = 'localhost';
 const database = 'instagram_scraper';
-const entities = ['src/**/*.entity.ts'];
+const entities = ['build/**/*.entity.js'];
 
-const isDefault = (fallback: string) =>
-    process.env.TYPEORM_CONNECTION_NAME == fallback ? 'default' : fallback;
-
-const config: ConnectionOptions[] = [
+module.exports = [
     {
         name: isDefault('mysql'),
         type: 'mysql',
@@ -35,5 +33,3 @@ const config: ConnectionOptions[] = [
         entities
     }
 ];
-
-export default config;

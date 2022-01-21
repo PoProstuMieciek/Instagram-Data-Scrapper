@@ -32,7 +32,7 @@
         "lint": "eslint src/ --ext .ts",
         "typeorm": "typeorm"
     },
-    "main": "build/index.js",
+    "main": "build/src/index.js",
     "repository": {
         "url": "git@github.com:PoProstuMieciek/instagram-scraper.git"
     },

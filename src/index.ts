@@ -1,6 +1,6 @@
 import 'reflect-metadata';
-import { User } from './entities/User.entity';
 import { createConnection } from 'typeorm';
+import { User } from './entities/User.entity';
 
 createConnection().then(async (connection) => {
     const userRepo = connection.getRepository(User);

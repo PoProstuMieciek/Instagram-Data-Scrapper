@@ -1,35 +1,37 @@
+const isProduction = process.env.NODE_ENV === 'production';
+
 const isDefault = (fallback) =>
     process.env.TYPEORM_CONNECTION_NAME == fallback ? 'default' : fallback;
 
-const host = 'localhost';
-const database = 'instagram_scraper';
-const entities = ['build/**/*.entity.js'];
+const common_options = {
+    host: 'localhost',
+    database: 'instagram_scraper',
+    entities: ['build/**/*.entity.js'],
+    logging: !isProduction,
+    synchronize: !isProduction
+};
 
 module.exports = [
     {
+        ...common_options,
         name: isDefault('mysql'),
         type: 'mysql',
-        host,
         port: 3306,
         username: 'root',
-        password: 'admin',
-        database,
-        entities
+        password: 'admin'
     },
     {
+        ...common_options,
         name: isDefault('postgres'),
         type: 'postgres',
-        host,
         port: 5432,
         username: 'admin',
-        password: 'admin',
-        database,
-        entities
+        password: 'admin'
     },
     {
+        ...common_options,
         name: isDefault('sqlite'),
         type: 'sqlite',
-        database: './data/instagram_scraper.sqlite3',
-        entities
+        database: './data/instagram_scraper.sqlite3'
     }
 ];

@@ -1,31 +1,26 @@
-import chalk from 'chalk';
+import { createLogger, format, transports } from 'winston';
 
-const info = chalk.blue;
-const success = chalk.green;
-const warn = chalk.yellow;
-const error = chalk.red;
-const fatal = chalk.bold.redBright;
+import env, { logging_levels } from '../config';
+const { SCRAPER_LOGGING_LEVEL } = env;
 
-export class ConsoleLogger {
-    info(...data: unknown[]) {
-        console.info(info('[INFO]'), ...data);
-    }
+export const logger = createLogger({
+    level: SCRAPER_LOGGING_LEVEL,
+    levels: logging_levels,
+    format: format.combine(
+        format.colorize(),
+        format.simple(),
+        format.timestamp()
+    ),
+    transports: [
+        new transports.Console(),
+        new transports.File({
+            filename: 'instagram-scraper.log'
+        }),
+        new transports.File({
+            filename: 'instagram-scraper.error.log',
+            level: 'error'
+        })
+    ]
+});
 
-    success(...data: unknown[]) {
-        console.info(success('[SUCCESS]'), ...data);
-    }
-
-    warn(...data: unknown[]) {
-        console.warn(warn('[WARN]'), ...data);
-    }
-
-    error(...data: unknown[]) {
-        console.error(error('[ERROR]'), ...data);
-    }
-
-    fatal(...data: unknown[]) {
-        console.error(fatal('[FATAL]', ...data));
-    }
-}
-
-export default new ConsoleLogger();
+export default logger;

@@ -38,6 +38,15 @@ export class ObjectStorageProvider {
             .promise();
     }
 
+    delete(filename: string) {
+        return this.s3
+            .deleteObject({
+                Bucket: this.bucketName,
+                Key: filename
+            })
+            .promise();
+    }
+
     download(filename: string) {
         return this.s3
             .getObject({

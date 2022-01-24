@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 
 import { readFileSync } from 'fs';
@@ -9,6 +8,7 @@ import { User } from './entities/User.entity';
 
 createConnection().then(async (connection) => {
     const objectStorage = new ObjectStorageProvider();
+
     const userRepo = connection.getRepository(User);
 
     const user = new User();
@@ -19,7 +19,7 @@ createConnection().then(async (connection) => {
     const { id } = await userRepo.save(user);
 
     const profilePicture = await objectStorage.upload(
-        `profile_picture_${id}.png`,
+        `profile_pictures/${id}.png`,
         readFileSync(`${homedir()}/Pictures/profile_picture.png`)
     );
     user.profilePictureETag = profilePicture.ETag;

@@ -11,6 +11,9 @@ export class User {
     @Column()
     lastName: string;
 
-    @Column()
-    age: string;
+    @Column({ type: 'int' })
+    age: number;
+
+    @Column({ nullable: true })
+    profilePictureETag?: string;
 }

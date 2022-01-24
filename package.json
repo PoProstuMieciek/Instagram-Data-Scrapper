@@ -43,7 +43,8 @@
         "pg": "^8.7.1",
         "reflect-metadata": "^0.1.13",
         "rimraf": "^3.0.2",
-        "typeorm": "^0.2.41"
+        "typeorm": "^0.2.41",
+        "winston": "^3.4.0"
     },
     "devDependencies": {
         "@commitlint/cli": "^16.1.0",

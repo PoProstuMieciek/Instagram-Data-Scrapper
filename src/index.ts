@@ -1,3 +1,5 @@
+import './config';
+
 import { createConnection } from 'typeorm';
 
 import { readFileSync } from 'fs';
@@ -8,7 +10,6 @@ import { User } from './entities/User.entity';
 
 createConnection().then(async (connection) => {
     const objectStorage = new ObjectStorageProvider();
-
     const userRepo = connection.getRepository(User);
 
     const user = new User();

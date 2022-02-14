@@ -3,7 +3,8 @@ import {
     PrimaryGeneratedColumn,
     Column,
     OneToMany,
-    ManyToOne
+    JoinTable,
+    ManyToMany
 } from 'typeorm';
 import { Image, StatisticsEntry } from '.';
 
@@ -19,14 +20,17 @@ export class Subpage {
     html: string;
 
     @OneToMany(() => StatisticsEntry, (e) => e.subpage)
+    @JoinTable()
     statistics: StatisticsEntry[];
 
     @OneToMany(() => Image, (i) => i.subpage)
+    @JoinTable()
     images: Image[];
 
-    @OneToMany(() => Subpage, (s) => s.referencedBy)
+    @ManyToMany(() => Subpage, (s) => s.referencedBy)
+    @JoinTable({ name: 'links' })
     referencedLinks: Subpage[];
 
-    @ManyToOne(() => Subpage, (s) => s.referencedLinks)
+    @ManyToMany(() => Subpage, (s) => s.referencedLinks)
     referencedBy: Subpage[];
 }

@@ -22,3 +22,21 @@ You can use a local database (e.g. SQLite3) but also a remote database (PostgreS
 -   [TypeScript](https://www.typescriptlang.org/) language
 -   [TypeORM](https://typeorm.io/) - object–relational mapper library
 -   database (PostgreSQL / SQLite3 / MariaDB)
+
+## Useful commands
+
+### `yarn build`
+
+Start build.
+
+### `yarn build:watch`
+
+Start build in watch mode.
+
+### `yarn start:dev`
+
+Start app in development mode using nodemon.
+
+### `yarn typeorm schema:drop && yarn typeorm schema:sync`
+
+Drop database and sync database schema using TypeORM CLI.

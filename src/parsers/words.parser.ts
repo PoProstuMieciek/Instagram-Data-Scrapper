@@ -14,7 +14,7 @@ export const parseWords = (dom: JSDOM) => {
     );
     const arr = p_arr.concat(span_arr).concat(tags_arr);
     arr.forEach((text) => {
-        let word_arr = (text as unknown as string).split(' ');
+        const word_arr = (text as unknown as string).split(' ');
         word_arr.forEach((word) => {
             if (words[word]) {
                 words[word]++;

@@ -16,7 +16,7 @@ export class Subpage {
     @Column()
     path: string;
 
-    @Column('text')
+    @Column('longtext')
     html: string;
 
     @OneToMany(() => StatisticsEntry, (e) => e.subpage)

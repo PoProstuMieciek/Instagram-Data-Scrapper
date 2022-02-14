@@ -1,6 +1,7 @@
 import { getRepository } from 'typeorm';
 import axios from 'axios';
 import { Subpage } from '../entities';
+import { parseHTML } from '.';
 
 export const parseSubpage = async (url: string, current_depth = 1) => {
     const subpagesRepo = getRepository(Subpage);
@@ -15,6 +16,7 @@ export const parseSubpage = async (url: string, current_depth = 1) => {
     subpage.html = data;
 
     // TODO: call `HTMLParser` #53
+    const { window } = parseHTML(data);
 
     // TODO: call `LinksParser` #54
     subpage.referencedLinks = [];

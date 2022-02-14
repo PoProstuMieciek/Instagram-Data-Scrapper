@@ -1,1 +1,1 @@
-export * from './Subpage.parser';
+export * from './subpage.parser';

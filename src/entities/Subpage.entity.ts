@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    OneToMany,
+    ManyToOne
+} from 'typeorm';
 import { Image, StatisticsEntry } from '.';
 
 @Entity('subpages')
@@ -17,4 +23,10 @@ export class Subpage {
 
     @OneToMany(() => Image, (i) => i.subpage)
     images: Image[];
+
+    @OneToMany(() => Subpage, (s) => s.referencedBy)
+    referencedLinks: Subpage[];
+
+    @ManyToOne(() => Subpage, (s) => s.referencedLinks)
+    referencedBy: Subpage[];
 }

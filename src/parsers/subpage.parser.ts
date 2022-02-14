@@ -3,8 +3,13 @@ import axios from 'axios';
 import { Subpage } from '../entities';
 import { parseHTML } from '.';
 
+import config from '../config';
+const { SCRAPER_MAX_DEPTH } = config;
+
 export const parseSubpage = async (url: string, current_depth = 1) => {
     const subpagesRepo = getRepository(Subpage);
+
+    if (current_depth > SCRAPER_MAX_DEPTH) return;
 
     const found = await subpagesRepo.findOne({ where: { path: url } });
     if (found) return;
@@ -27,7 +32,7 @@ export const parseSubpage = async (url: string, current_depth = 1) => {
     // TODO: call `ImagesParser` #56
     subpage.images = [];
 
-    subpagesRepo.save(subpage);
+    await subpagesRepo.save(subpage);
 
     subpage.referencedLinks.forEach((link) => {
         parseSubpage(link.path, current_depth + 1);

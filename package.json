@@ -37,9 +37,11 @@
         "url": "git@github.com:PoProstuMieciek/wikipedia-scraper.git"
     },
     "dependencies": {
+        "@types/jsdom": "^16.2.14",
         "aws-sdk": "^2.1061.0",
         "chalk": "^4.0.0",
         "joi": "^17.5.0",
+        "jsdom": "^19.0.0",
         "mysql": "^2.18.1",
         "pg": "^8.7.1",
         "reflect-metadata": "^0.1.13",

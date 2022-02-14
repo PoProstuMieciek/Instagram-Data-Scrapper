@@ -1,8 +1,8 @@
-# Instagram Scraper
+# Wikipedia Scraper
 
 ## Project Description
 
-This is a simple data scraper that uses [Instagram Basic Display API](https://developers.facebook.com/docs/instagram-basic-display-api).
+This is a simple data scraper that uses [Wikipedia Basic Display API](https://developers.facebook.com/docs/instagram-basic-display-api).
 
 It creates a database with archived data from specified user profile.
 It collects data such as:
@@ -36,4 +36,4 @@ You can enable more than one analysis module in your configuration.
 -   [OpenCV](https://opencv.org/) - computer vision library
 -   [TypeORM](https://typeorm.io/) - object–relational mapper library
 -   database (PostgreSQL / SQLite3 / MariaDB)
--   [Instagram Basic Display API](https://developers.facebook.com/docs/instagram-basic-display-api)
+-   [Wikipedia Basic Display API](https://developers.facebook.com/docs/instagram-basic-display-api)

@@ -5,7 +5,7 @@ const isDefault = (fallback) =>
 
 const common_options = {
     host: 'localhost',
-    database: 'instagram_scraper',
+    database: 'wikipedia_scraper',
     entities: ['build/**/*.entity.js'],
     logging: !isProduction,
     synchronize: !isProduction
@@ -32,6 +32,6 @@ module.exports = [
         ...common_options,
         name: isDefault('sqlite'),
         type: 'sqlite',
-        database: './data/instagram_scraper.sqlite3'
+        database: './data/wikipedia_scraper.sqlite3'
     }
 ];

@@ -1,5 +1,5 @@
 {
-    "name": "instagram-scraper",
+    "name": "wikipedia-scraper",
     "version": "1.0.0",
     "description": "",
     "private": true,
@@ -34,7 +34,7 @@
     },
     "main": "build/src/index.js",
     "repository": {
-        "url": "git@github.com:PoProstuMieciek/instagram-scraper.git"
+        "url": "git@github.com:PoProstuMieciek/wikipedia-scraper.git"
     },
     "dependencies": {
         "aws-sdk": "^2.1061.0",

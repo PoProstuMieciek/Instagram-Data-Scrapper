@@ -12,8 +12,8 @@
                 "port": 5432,
                 "driver": "PostgreSQL",
                 "name": "PostgreSQL",
-                "group": "Instagram Scraper",
-                "database": "instagram_scraper",
+                "group": "Wikipedia Scraper",
+                "database": "wikipedia_scraper",
                 "username": "admin",
                 "password": "admin"
             },
@@ -25,18 +25,18 @@
                 "server": "localhost",
                 "port": 3306,
                 "driver": "MySQL",
-                "group": "Instagram Scraper",
+                "group": "Wikipedia Scraper",
                 "name": "MySQL",
-                "database": "instagram_scraper",
+                "database": "wikipedia_scraper",
                 "username": "root",
                 "password": "admin"
             },
             {
                 "previewLimit": 50,
                 "driver": "SQLite",
-                "database": "${workspaceFolder:instagram-scraper}/data/instagram_scraper.sqlite3",
+                "database": "${workspaceFolder:wikipedia-scraper}/data/wikipedia_scraper.sqlite3",
                 "name": "SQLite",
-                "group": "Instagram Scraper"
+                "group": "Wikipedia Scraper"
             }
         ],
         "sqltools.useNodeRuntime": true,

@@ -14,10 +14,10 @@ export const logger = createLogger({
     transports: [
         new transports.Console(),
         new transports.File({
-            filename: 'instagram-scraper.log'
+            filename: 'wikipedia-scraper.log'
         }),
         new transports.File({
-            filename: 'instagram-scraper.error.log',
+            filename: 'wikipedia-scraper.error.log',
             level: 'error'
         })
     ]

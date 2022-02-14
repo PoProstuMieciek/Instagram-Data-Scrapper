@@ -1,29 +1,14 @@
-import './config';
-
 import { createConnection } from 'typeorm';
 
-import { readFileSync } from 'fs';
-import { homedir } from 'os';
+import { Subpage } from './entities';
 
-import { ObjectStorageProvider } from './providers/ObjectStorageProvider';
-import { User } from './entities/User.entity';
+import './config';
 
 createConnection().then(async (connection) => {
-    const objectStorage = new ObjectStorageProvider();
-    const userRepo = connection.getRepository(User);
-
-    const user = new User();
-    user.firstName = 'Jan';
-    user.lastName = 'Kowalski';
-    user.age = 20;
-
-    const { id } = await userRepo.save(user);
-
-    const profilePicture = await objectStorage.upload(
-        `profile_pictures/${id}.png`,
-        readFileSync(`${homedir()}/Pictures/profile_picture.png`)
-    );
-    user.profilePictureETag = profilePicture.ETag;
-
-    await userRepo.save(user);
+    const subpagesRepo = connection.getRepository(Subpage);
+    const subpage = new Subpage();
+    subpage.html =
+        '<html><head><title>Subpage</title></head><body><p>Hello, world!</p></body></html>';
+    subpage.path = 'http://localhost:3000/hello';
+    await subpagesRepo.save(subpage);
 });

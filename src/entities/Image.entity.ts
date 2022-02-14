@@ -1,8 +1,10 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, ManyToOne } from 'typeorm';
+import { Subpage } from '.';
 
 @Entity('images')
 export class Image {
-    // TODO: many-to-one relation to Subpage entity PR #47
+    @ManyToOne(() => Subpage, (p) => p.images)
+    subpage: Subpage;
 
     @Column()
     etag: string;

@@ -1,1 +1,1 @@
-export * from './ObjectStorageProvider';
+export * from './ObjectStorage.provider';

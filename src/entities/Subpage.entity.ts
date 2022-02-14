@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Image, StatisticsEntry } from '.';
 
 @Entity('subpages')
 export class Subpage {
@@ -10,4 +11,10 @@ export class Subpage {
 
     @Column('text')
     html: string;
+
+    @OneToMany(() => StatisticsEntry, (e) => e.subpage)
+    statistics: StatisticsEntry[];
+
+    @OneToMany(() => Image, (i) => i.subpage)
+    images: Image[];
 }

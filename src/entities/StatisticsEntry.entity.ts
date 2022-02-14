@@ -1,8 +1,10 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, ManyToOne } from 'typeorm';
+import { Subpage } from '.';
 
 @Entity('statistics')
 export class StatisticsEntry {
-    // TODO: many-to-one relation to Subpage entity PR #47
+    @ManyToOne(() => Subpage, (p) => p.statistics)
+    subpage: Subpage;
 
     @Column()
     word: string;

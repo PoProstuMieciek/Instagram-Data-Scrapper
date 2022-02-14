@@ -4,10 +4,7 @@ export const parseLinks = (dom: JSDOM) => {
     const links: string[] = [];
     const document = dom.window.document;
     const anchors = document.querySelectorAll("a");
-    anchors.forEach(
-        function(value){
-            links.push(value.href);
-        }
-    );
-    return links;
+    const anchors_arr = Array.from(anchors);
+    const href_arr = anchors_arr.map((a) => a.href)
+    return href_arr;
 };

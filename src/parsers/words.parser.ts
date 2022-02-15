@@ -2,26 +2,28 @@ import { JSDOM } from 'jsdom';
 
 export const parseWords = (dom: JSDOM) => {
     const document = dom.window.document;
-    const words: { [key: string]: number } = {};
+
     const p_arr = Array.from(document.querySelectorAll('p')).map(
-        (p) => p.textContent
+        (p) => p.textContent || ''
     );
     const span_arr = Array.from(document.querySelectorAll('span')).map(
-        (span) => span.textContent
+        (span) => span.textContent || ''
     );
-    const tags_arr = Array.from(document.querySelectorAll('tags')).map(
-        (tags) => tags.textContent
-    );
-    const arr = p_arr.concat(span_arr).concat(tags_arr);
+
+    const arr = [...p_arr, ...span_arr];
+    const stats: { [key: string]: number } = {};
+
     arr.forEach((text) => {
-        const word_arr = (text as unknown as string).split(' ');
+        const word_arr = text.split(' ');
+
         word_arr.forEach((word) => {
-            if (words[word]) {
-                words[word]++;
+            if (stats[word]) {
+                stats[word]++;
             } else {
-                words[word] = 1;
+                stats[word] = 1;
             }
         });
     });
-    return words;
+
+    return stats;
 };

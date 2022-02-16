@@ -1,9 +1,12 @@
 import { getRepository } from 'typeorm';
 import axios from 'axios';
-import { Subpage } from '../entities';
-import { parseHTML } from '.';
+import { Asset, StatisticsEntry, Subpage } from '../entities';
+import { parseHTML, parseLinks, parseWords } from '.';
+import Logger from '../utils/ConsoleLogger';
 
 import config from '../config';
+import { objectStoreProvider } from '../providers';
+import { randomUUID } from 'crypto';
 const { SCRAPER_MAX_DEPTH } = config;
 
 export const parseSubpage = async (url: string, current_depth = 1) => {
@@ -11,30 +14,57 @@ export const parseSubpage = async (url: string, current_depth = 1) => {
 
     if (current_depth > SCRAPER_MAX_DEPTH) return;
 
-    const found = await subpagesRepo.findOne({ where: { path: url } });
-    if (found) return;
+    let subpage = await subpagesRepo
+        .createQueryBuilder('user')
+        .where('user.path = :path', { path: url })
+        .getOne();
 
-    const { data } = await axios.get<string>(url);
+    if (subpage?.visited) return;
 
-    const subpage = new Subpage();
-    subpage.path = url;
-    subpage.html = data;
+    try {
+        const { data } = await axios.get<string>(url);
 
-    // TODO: call `HTMLParser` #53
-    const { window } = parseHTML(data);
+        const dom = parseHTML(data);
 
-    // TODO: call `LinksParser` #54
-    subpage.referencedLinks = [];
+        if (!subpage) subpage = new Subpage();
 
-    // TODO: call `WordsParser` #55
-    subpage.statistics = [];
+        subpage.path = url;
+        subpage.visited = true;
 
-    // TODO: call `ImagesParser` #56
-    subpage.images = [];
+        subpage.referencedLinks = parseLinks(dom, url).map((link) => {
+            return {
+                path: link
+            } as Subpage;
+        });
 
-    await subpagesRepo.save(subpage);
+        subpage.statistics = Object.entries(parseWords(dom)).map(
+            ([word, occurences]) => {
+                return {
+                    word,
+                    occurences
+                } as StatisticsEntry;
+            }
+        );
 
-    subpage.referencedLinks.forEach((link) => {
-        parseSubpage(link.path, current_depth + 1);
+        // subpage.images = await Promise.all(
+        //     parseImages(dom).map(async (href) => {
+        //         const s = new Image();
+
+        //         const { data } = await axios.get(href);
+        //         const obj = await objectStoreProvider.upload(randomUUID(), data);
+
+        //         s.etag = obj.ETag || '';
+
+        //         return s;
+        //     })
+        // );
+
+        subpagesRepo.save(subpage);
+    } catch (err) {
+        Logger.error(err);
+    }
+
+    subpage?.referencedLinks?.forEach(({ path }) => {
+        parseSubpage(path, current_depth + 1);
     });
 };

@@ -1,29 +1,42 @@
-import { JSDOM } from 'jsdom';
+import { CheerioAPI } from 'cheerio';
 
-export const parseWords = (dom: JSDOM) => {
-    const document = dom.window.document;
+export const padWithLeadingZeros = (string: string) => {
+    return new Array(5 - string.length).join('0') + string;
+};
 
-    const p_arr = Array.from(document.querySelectorAll('p')).map(
-        (p) => p.textContent || ''
-    );
-    const span_arr = Array.from(document.querySelectorAll('span')).map(
-        (span) => span.textContent || ''
-    );
+export const unicodeCharEscape = (charCode: number) => {
+    return '\\u' + padWithLeadingZeros(charCode.toString(16));
+};
 
-    const arr = [...p_arr, ...span_arr];
+export const unicodeEscape = (string: string) => {
+    return string
+        .split('')
+        .map((char) => {
+            const charCode = char.charCodeAt(0);
+
+            // return charCode > 127 ? '' : char;
+            return charCode > 127 ? unicodeCharEscape(charCode) : char;
+        })
+        .join('');
+};
+
+export const parseWords = ($: CheerioAPI) => {
     const stats: { [key: string]: number } = {};
 
-    arr.forEach((text) => {
-        const word_arr = text.split(' ');
+    const text = $('p,span,h1,h2,h3,h4,h5,h6,a,li').text();
+    const word_arr = text.toLowerCase().split(/[^\w]/);
 
-        word_arr.forEach((word) => {
-            if (stats[word]) {
-                stats[word]++;
-            } else {
-                stats[word] = 1;
-            }
-        });
-    });
+    for (const word of word_arr) {
+        const new_word = unicodeEscape(word);
+
+        if (!new_word) continue;
+
+        if (stats[new_word]) {
+            stats[new_word]++;
+        } else {
+            stats[new_word] = 1;
+        }
+    }
 
     return stats;
 };

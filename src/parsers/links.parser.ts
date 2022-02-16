@@ -1,9 +1,11 @@
-import { JSDOM } from 'jsdom';
+import { CheerioAPI } from 'cheerio';
 
-export const parseLinks = (dom: JSDOM) => {
-    const document = dom.window.document;
-    const anchors = document.querySelectorAll('a');
-    const anchors_arr = Array.from(anchors);
-    const href_arr = anchors_arr.map((a) => a.href);
+export const parseLinks = ($: CheerioAPI, base_url: string) => {
+    const anchors_arr = $('a').toArray();
+
+    const href_arr = anchors_arr
+        .map((a) => new URL(a.attribs.href, base_url).href)
+        .filter((s) => s);
+
     return href_arr;
 };

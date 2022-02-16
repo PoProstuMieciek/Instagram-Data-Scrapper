@@ -1,14 +1,13 @@
 import { createConnection } from 'typeorm';
+import { parseSubpage } from './parsers';
 
-import { Subpage } from './entities';
+import Logger from './utils/ConsoleLogger';
 
-import './config';
+import config from './config';
+const { SCRAPER_START_URL } = config;
 
-createConnection().then(async (connection) => {
-    const subpagesRepo = connection.getRepository(Subpage);
-    const subpage = new Subpage();
-    subpage.html =
-        '<html><head><title>Subpage</title></head><body><p>Hello, world!</p></body></html>';
-    subpage.path = 'http://localhost:3000/hello';
-    await subpagesRepo.save(subpage);
+createConnection().then(async () => {
+    Logger.info('Connected successfully!');
+
+    parseSubpage(SCRAPER_START_URL);
 });

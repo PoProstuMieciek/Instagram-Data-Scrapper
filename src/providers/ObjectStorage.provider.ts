@@ -59,3 +59,5 @@ export class ObjectStorageProvider {
             .promise();
     }
 }
+
+export const objectStoreProvider = new ObjectStorageProvider();

@@ -9,7 +9,7 @@ export class StatisticsEntry {
     @ManyToOne(() => Subpage, (p) => p.statistics)
     subpage: Subpage;
 
-    @Column()
+    @Column('text')
     word: string;
 
     @Column('bigint')

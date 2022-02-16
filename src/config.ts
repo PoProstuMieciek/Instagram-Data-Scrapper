@@ -14,6 +14,7 @@ export const logging_levels = {
 export interface EnvVariables {
     NODE_ENV: 'production' | 'development';
     SCRAPER_LOGGING_LEVEL: string;
+    SCRAPER_START_URL: string;
     SCRAPER_MAX_DEPTH: number;
     TYPEORM_CONNECTION_NAME: string;
     AWS_ENDPOINT_URL?: string;
@@ -33,6 +34,7 @@ const envSchema = joi
             .string()
             .valid(...Object.keys(logging_levels))
             .default('info'),
+        SCRAPER_START_URL: joi.string().uri().required(),
         SCRAPER_MAX_DEPTH: joi.number().integer().positive(),
         TYPEORM_CONNECTION_NAME: joi.string().default('mysql'),
         AWS_ENDPOINT_URL: joi.string().uri(),

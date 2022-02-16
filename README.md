@@ -25,6 +25,10 @@ You can use a local database (e.g. SQLite3) but also a remote database (PostgreS
 
 ## Useful commands
 
+### `docker-compose up -d`
+
+Start required containers (databases, control panels, object store).
+
 ### `yarn build`
 
 Start build.

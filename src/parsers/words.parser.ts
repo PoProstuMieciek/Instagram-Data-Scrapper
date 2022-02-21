@@ -1,14 +1,17 @@
 import { CheerioAPI } from 'cheerio';
 
-export const padWithLeadingZeros = (string: string) => {
-    return new Array(5 - string.length).join('0') + string;
-};
-
-export const unicodeCharEscape = (charCode: number) => {
-    return '\\u' + padWithLeadingZeros(charCode.toString(16));
-};
-
+/**
+ * Function gets a string and returns the same string but with escaped unicode characters (they seem problematic for the database).
+ */
 export const unicodeEscape = (string: string) => {
+    const padWithLeadingZeros = (string: string) => {
+        return new Array(5 - string.length).join('0') + string;
+    };
+
+    const unicodeCharEscape = (charCode: number) => {
+        return '\\u' + padWithLeadingZeros(charCode.toString(16));
+    };
+
     return string
         .split('')
         .map((char) => {
@@ -20,6 +23,9 @@ export const unicodeEscape = (string: string) => {
         .join('');
 };
 
+/**
+ * Function that gets CheerioAPI instance and returns a dictionary of statistics.
+ */
 export const parseWords = ($: CheerioAPI) => {
     const stats: { [key: string]: number } = {};
 

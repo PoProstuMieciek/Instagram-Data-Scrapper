@@ -1,14 +1,15 @@
 import { getRepository } from 'typeorm';
 import axios from 'axios';
-import { Asset, StatisticsEntry, Subpage } from '../entities';
+import { StatisticsEntry, Subpage } from '../entities';
 import { parseHTML, parseLinks, parseWords } from '.';
 import Logger from '../utils/ConsoleLogger';
 
 import config from '../config';
-import { objectStoreProvider } from '../providers';
-import { randomUUID } from 'crypto';
 const { SCRAPER_MAX_DEPTH } = config;
 
+/**
+ * Main function that gets a website url string and creates a database entry with links and word statistics.
+ */
 export const parseSubpage = async (url: string, current_depth = 1) => {
     const subpagesRepo = getRepository(Subpage);
 

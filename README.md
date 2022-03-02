@@ -44,3 +44,24 @@ Start app in development mode using nodemon.
 ### `yarn typeorm schema:drop && yarn typeorm schema:sync`
 
 Drop database and sync database schema using TypeORM CLI.
+
+## Files
+
+- `.env.example` - example .env configuration file. When no `.env` file is found `.env.example` is copied to `.env`.
+- `docker-compose.yml` is used by `docker-compose up -d`
+- `examples/wikipedia_scraper.sql` - example database created by this program from [https://en.wikipedia.org/wiki/Linux](https://en.wikipedia.org/wiki/Linux)
+- `src` - **source code**
+	- `entities` - TypeORM entities - describes database tables
+		- `Assets.entity.ts` - not used
+		- `StatisticsEntry.entity.ts` - word statistics (number of occurrences of each word) 
+		- `Subpage.entity.ts` - stores subpages links and information if they are visited
+	- `parsers` - parsers functions
+		- `html.parser.ts` - Function that gets a HTML string and returns object similar to `window.document` object in browser. Uses: `cheerio` parsing library
+		- `links.parser.ts` - Function that gets CheerioAPI instance and returns a list of links from the website.
+		- `subpage.parser.ts` - Main function that gets a website url string and creates a database entry with links and word statistics.
+		- `words.parser.ts` - contains 2 functions
+			- `unicodeEscape` - Function gets a string and returns the same string but with escaped unicode characters (they seem problematic for the database).
+			- `parseWords` - Function that gets CheerioAPI instance and returns a dictionary of statistics.
+	- `providers/ObjectStorage.provider.ts` - Functions that upload, download and delete files from object storage. Not used.
+	- `utils/ConsoleLogger.ts` - creates logs
+	- `config.ts` - configuration file

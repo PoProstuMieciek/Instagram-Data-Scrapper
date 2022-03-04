@@ -66,3 +66,8 @@ Drop database and sync database schema using TypeORM CLI.
 	- `providers/ObjectStorage.provider.ts` - Functions that upload, download and delete files from object storage. Not used.
 	- `utils/ConsoleLogger.ts` - creates logs
 	- `config.ts` - configuration file
+
+## Authors
+- Maciej Opaliński ([PoProstuMieciek](https://github.com/PoProstuMieciek)) - repository and docker setup, tasks distribution, TypeScript code
+- Wojciech Widomski ([WojtekWidomski](https://github.com/WojtekWidomski)) - documentation, TypeScript code
+- Mikołaj Popik ([M1KUS3Q](https://github.com/M1KUS3Q)) - Python concept, performance optimization
